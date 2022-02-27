@@ -6,7 +6,5 @@ Fork this repostory and fill out your details below:
 
 ## Your details
 
-- Name:
-- Email:
-- LinkedIn:
+- Names: Alexandr Reznik, Dragos Paul Vecerdea, Sanskar Chawla, Daksh Shah
 

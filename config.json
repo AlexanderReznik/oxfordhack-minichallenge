@@ -1,0 +1,9 @@
+{
+    "coefficients": 
+    {
+        "google": 2,
+        "yelp": 2,
+        "reviews": 6,
+        "max_review_count": 100
+    }
+}
