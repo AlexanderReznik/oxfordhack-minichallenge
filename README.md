@@ -8,44 +8,47 @@
 
 # MOPR: Merchant Online Presence Rater 
 
-A tool that will consume information about a business and scan the web for their online presence including but not limited to reviews, map location and social media profiles.
+A tool that will consume information about a list of businesses and scan the web for their online presence including but not limited to reviews, map location and social media profiles. Using this acquired knowledge it would rate these businesses.
 
-## Using
+## Requirements
 
-To run the script
-- make sure python (version 3) is installed
-- provide `.api_key` file containing Google Cloud Platform API key. https://developers.google.com/knowledge-graph
-- provide `.yelp_api_key` file containing Yelp API key. https://www.yelp.com/developers/documentation/v3/authentication
-- provide `config.json` file described later
-- run `pip install -r requirements.txt`
-- run MOPR by executing `python scrapping.py input.json` where `input.json` is the input file
-- after the script is executed the result would be generated in `output.json` file
+### Python 3
+
+```
+python3 -m venv venv
+. venv/bin/activate
+pip install -r requirements.txt
+```
+
+### API Keys
+- Provide `.api_key` file containing Google Cloud Platform API key. https://developers.google.com/knowledge-graph
+- Provide `.yelp_api_key` file containing Yelp API key. https://www.yelp.com/developers/documentation/v3/authentication
+
+### Configuration
+
+- We have provided `config.json` file, with the weights for different types of information. You can fine tune this according to your use case. 
+
+## Executing
+```
+python scrapping.py input.json
+``` 
+
+The script saves the results in `output.json`.
 
 ## Logic
 
 Every local business gets points for
 - being present at Google Knowlege Graph
 - being present at Yelp
-- getting a reviews
+- getting reviews
 
-Review score is calculated as `max(max_review_count, review_count) / max_review_count * review_coefficient`. A place gets maximum amount of points for getting a number of review higher or equal to the number provided in config as "max_review_count"
+Review score is calculated as:
 
+> max(max_review_count, review_count) / max_review_count * review_coefficient 
 
-## Example config.json
+A place gets maximum amount of points for getting a number of review higher or equal to the number provided in config as "max_review_count"
 
-```
-{
-    "coefficients": 
-    {
-        "google": 2,
-        "yelp": 2,
-        "reviews": 6,
-        "max_review_count": 100
-    }
-}
-```
-
-## Example input.json
+## Sample input.json
 
 ```
 [
@@ -54,7 +57,7 @@ Review score is calculated as `max(max_review_count, review_count) / max_review_
 ]
 ```
 
-## Example output.json
+## Sample output.json
 
 ```
 [
